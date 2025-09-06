@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "https://vision-ai-chatbot-1.onrender.com/api/$1" }
+  ]
+}
