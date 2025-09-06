@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const axios = require('axios');
 require('dotenv').config();
 
@@ -206,15 +207,9 @@ app.post('/api/chat/stream', async (req, res) => {
   }
 });
 
-// Serve Angular static files (after build writes to server/public)
-const staticDir = path.join(__dirname, 'public');
-app.use(express.static(staticDir));
-
-// Fallback to index.html for Angular routing
-app.get('*', (req, res) => {
-  // Avoid interfering with API routes
-  if (req.path.startsWith('/api/')) return res.status(404).json({ error: 'Not found' });
-  res.sendFile(path.join(staticDir, 'index.html'));
+// Start API server (no static file serving)
+app.get('/', (_req, res) => {
+  res.json({ status: 'ok', service: 'vision-api', model: MODEL });
 });
 
-app.listen(PORT, () => console.log(`Vision proxy server listening on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Vision API server listening on http://localhost:${PORT}`));

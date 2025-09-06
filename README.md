@@ -61,6 +61,16 @@ A local Angular + Tailwind front-end with a small Node proxy server for AI chat.
 
 Open http://localhost:4200/ (frontend) and ensure the server proxy is running on the port configured in `server/.env`.
 
+## Development
+
+Run both Angular dev server (http://localhost:4200) and API server (http://localhost:3000) simultaneously:
+
+npm run dev
+
+Individual commands (if you want them separate):
+- Frontend only: npm run start:frontend
+- API only: npm run start:server
+
 ## Build for production
 
 - Build frontend:
