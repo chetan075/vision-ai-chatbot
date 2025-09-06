@@ -1,0 +1,91 @@
+<div class="min-h-screen flex items-center justify-center p-4 relative" [ngStyle]="{'background': 'var(--gradient-bg)'}">
+  <div class="noise-overlay"></div>
+  <div class="w-full max-w-4xl h-[80vh] rounded-3xl glass-panel accent-outline backdrop-blur-xl shadow-2xl flex flex-col">
+    
+    <!-- Header -->
+  <div class="p-6 border-b border-white/10">
+  <h1 class="text-3xl font-bold text-center drop-shadow-lg accent-gradient">Vision AI Chatbot</h1>
+      <p class="text-white/80 text-center mt-2">Your intelligent AI assistant</p>
+    </div>
+
+    <!-- Messages Container -->
+    <div 
+      #messagesContainer
+      class="flex-1 overflow-y-auto p-6 space-y-4"
+    >
+      <div 
+        *ngFor="let message of messages" 
+        class="flex animate-fade-in"
+        [ngClass]="{
+          'justify-end': message.role === 'user',
+          'justify-start': message.role === 'assistant'
+        }"
+      >
+        <div 
+          class="max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-lg text-white glass-panel accent-outline"
+          [ngClass]="{
+            'bg-accent-gradient': message.role === 'user',
+            'bg-white/10 backdrop-blur-md border border-white/20': message.role === 'assistant'
+          }"
+        >
+          <div class="text-sm opacity-90 mb-1" *ngIf="message.role === 'assistant'">
+            🤖 Vision
+          </div>
+          <div class="text-sm opacity-90 mb-1" *ngIf="message.role === 'user'">
+            👤 You
+          </div>
+          <div 
+            class="text-base leading-relaxed" 
+            *ngIf="message.role === 'assistant'"
+            [innerHTML]="formatMessage(message.content)"
+          ></div>
+          <p 
+            class="text-base leading-relaxed" 
+            *ngIf="message.role === 'user'"
+          >{{ message.content }}</p>
+          <div class="text-xs opacity-70 mt-2">
+            {{ message.timestamp | date:'short' }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading indicator -->
+      <div *ngIf="isLoading" class="flex justify-start animate-fade-in">
+  <div class="max-w-xs px-4 py-3 rounded-2xl glass-panel accent-outline text-white">
+          <div class="text-sm opacity-90 mb-1">🤖 Vision</div>
+          <div class="flex space-x-1">
+            <div class="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+            <div class="w-2 h-2 bg-white rounded-full animate-bounce loading-dot-1"></div>
+            <div class="w-2 h-2 bg-white rounded-full animate-bounce loading-dot-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="p-6 border-t border-white/20">
+      <form (ngSubmit)="sendMessage()" class="flex space-x-4">
+        <input
+          type="text"
+          name="newMessage"
+          [(ngModel)]="newMessage"
+          (keypress)="onKeyPress($event)"
+          placeholder="Type your message here..."
+          class="flex-1 px-4 py-3 rounded-2xl glass-panel text-white placeholder-white/55 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          [disabled]="isLoading"
+        />
+        <button
+          type="submit"
+          [disabled]="!newMessage.trim() || isLoading"
+          class="px-6 py-3 rounded-2xl bg-accent-gradient hover:opacity-90 text-white font-semibold tracking-wide shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus-ring"
+        >
+          <span *ngIf="!isLoading">Send</span>
+          <span *ngIf="isLoading">...</span>
+        </button>
+      </form>
+      <p class="text-white/60 text-xs text-center mt-3">
+        Press Enter to send • Shift+Enter for new line
+      </p>
+    </div>
+  </div>
+</div>

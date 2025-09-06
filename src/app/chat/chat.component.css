@@ -1,0 +1,139 @@
+.loading-dot-1 {
+  animation-delay: 0.1s;
+}
+
+.loading-dot-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Message formatting styles */
+.heading-1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #93c5fd;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+}
+
+.heading-2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #bfdbfe;
+  margin-bottom: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.heading-3 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #dbeafe;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.list-container {
+  margin: 1rem 0;
+}
+
+.list-item {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.list-item.numbered {
+  margin-left: 0;
+}
+
+.list-item.bullet {
+  margin-left: 0;
+}
+
+.list-number {
+  font-weight: 600;
+  color: #4ade80;
+  margin-right: 0.5rem;
+  min-width: 2rem;
+}
+
+.bullet {
+  color: #4ade80;
+  margin-right: 0.5rem;
+  min-width: 1rem;
+  font-weight: bold;
+}
+
+.list-content {
+  flex: 1;
+}
+
+.inline-code {
+  background-color: #1f2937;
+  color: #86efac;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: 'Courier New', monospace;
+  border: 1px solid #4b5563;
+}
+
+.code-block {
+  background-color: #111827;
+  border: 1px solid #4b5563;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.code-header {
+  background-color: #1f2937;
+  color: #d1d5db;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-bottom: 1px solid #4b5563;
+}
+
+.code-block pre {
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 0;
+}
+
+.code-block code {
+  color: #86efac;
+  font-family: 'Courier New', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+.paragraph {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.font-bold {
+  font-weight: 600;
+  color: #fde047;
+}
+
+.italic {
+  font-style: italic;
+  color: #fde68a;
+}

@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { 
+  height: 100%; 
+  background: var(--gradient-bg, #0a0a0a);
+  color: var(--text-primary, #ffffff);
+}
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  background: var(--gradient-bg, #0a0a0a);
+}
+
+/* Outskill-inspired Professional Dark Theme */
+:root {
+	/* Deep professional background - pure dark grays */
+	--gradient-bg: linear-gradient(135deg,#0a0a0a,#111111 50%,#1a1a1a);
+	--bg-base: #0a0a0a;
+	--bg-alt: #151515;
+	--surface-glass: rgba(255,255,255,0.03);
+	--surface-border: rgba(255,255,255,0.06);
+	--surface-hover: rgba(255,255,255,0.05);
+	--surface-outline: linear-gradient(140deg,rgba(255,165,0,0.3),rgba(255,140,0,0.2) 60%,transparent);
+	--text-primary: #ffffff;
+	--text-secondary: rgba(255,255,255,0.65);
+	--text-faint: rgba(255,255,255,0.4);
+	--accent-gradient: linear-gradient(90deg,#ff8c00 0%,#ff7f00 50%,#ff6b00 100%);
+	--accent-focus-ring: 0 0 0 3px rgba(255,140,0,0.4),0 0 0 6px rgba(255,165,0,0.2);
+	--card-glow: 0 8px 28px -10px rgba(255,140,0,0.25),0 6px 22px -12px rgba(255,165,0,0.15);
+	--shadow-soft: 0 2px 4px -2px rgba(0,0,0,0.8),0 8px 28px -8px rgba(0,0,0,0.7);
+	--divider: linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
+}
+
+[data-theme='light'] {
+	--gradient-bg: linear-gradient(135deg,#fafafa,#f5f5f5 50%,#eeeeee);
+	--surface-glass: rgba(0,0,0,0.03);
+	--surface-border: rgba(0,0,0,0.06);
+	--surface-hover: rgba(0,0,0,0.05);
+	--text-primary: #1a1a1a;
+	--text-secondary: #666666;
+	--accent-gradient: linear-gradient(90deg,#ff8c00 0%,#ff7f00 50%,#ff6b00 100%);
+	--accent-focus-ring: 0 0 0 3px rgba(255,140,0,0.3),0 0 0 6px rgba(255,165,0,0.2);
+	--card-glow: 0 6px 22px -6px rgba(255,140,0,0.2),0 4px 14px -4px rgba(255,165,0,0.1);
+}
+
+body[data-theme='light'] .dark-only { display:none; }
+body:not([data-theme='light']) .light-only { display:none; }
+
+/* Utility classes for themes */
+.glass-panel { background: var(--surface-glass); border:1px solid var(--surface-border); -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%); }
+.glass-panel.accent-outline { position:relative; }
+.glass-panel.accent-outline::before { content:""; position:absolute; inset:0; padding:1px; border-radius:inherit; background:var(--surface-outline); -webkit-mask:
+	linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask:
+	linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity:.7; pointer-events:none; }
+.panel-hover { transition: background .35s, transform .35s, box-shadow .4s; }
+.panel-hover:hover { background: var(--surface-hover); box-shadow: var(--card-glow); transform: translateY(-4px); }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.accent-gradient { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.bg-accent-gradient { background: var(--accent-gradient); }
+
+/* Animated subtle grid overlay */
+.bg-grid::before { content:""; position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,0.06) 1px,transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px,transparent 1px); background-size:60px 60px,60px 60px; mask: radial-gradient(circle at 50% 50%,rgba(0,0,0,.6),transparent 70%); pointer-events:none; }
+
+/* Premium soft dividers */
+.divider-soft { background: var(--divider); height:1px; width:100%; }
+
+/* Noise overlay utility */
+.noise-overlay { position:absolute; inset:0; pointer-events:none; mix-blend-mode:overlay; opacity:.12; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); }
+
+body { background: var(--gradient-bg); color: var(--text-primary); }
+
+.focus-ring:focus-visible { outline:none; box-shadow: var(--accent-focus-ring); }
