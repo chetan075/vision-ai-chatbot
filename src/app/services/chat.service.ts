@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 export interface Message {
   role: 'user' | 'assistant';
@@ -11,9 +12,8 @@ export interface Message {
   providedIn: 'root'
 })
 export class ChatService {
-  // Call the local proxy server which forwards requests to Gemini.
-  // Start the proxy with: cd server; npm install; copy .env.example to .env and set GEMINI_API_KEY, then npm start
-  private proxyUrl = '/api/chat';
+  private base = environment.apiBase || '';
+  private proxyUrl = `${this.base}/api/chat`;
 
   constructor(private http: HttpClient) {}
 
@@ -32,7 +32,7 @@ export class ChatService {
 
   // Streamed send: calls /api/chat/stream and invokes onChunk for each chunk received.
   streamMessage(message: string, conversationHistory: Message[], onChunk: (chunk: string) => void): Promise<void> {
-    const url = '/api/chat/stream';
+    const url = `${this.base}/api/chat/stream`;
     return new Promise((resolve, reject) => {
       fetch(url, {
         method: 'POST',
