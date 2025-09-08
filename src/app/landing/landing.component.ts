@@ -61,6 +61,7 @@ export class LandingComponent implements OnInit {
   ];
 
   newsletterEmail = '';
+  showMobileNav = false;
 
   submitNewsletter() {
     // Placeholder; integrate with backend service or Beehiiv API proxy
